@@ -21,7 +21,11 @@
   G.frame = () => { }; G.setVisible = () => { }; G.setScene = id => { G.scene = id; };
   if (!gl) { cv.style.display = "none"; DP.gl = G; return; }
   const vs = "attribute vec2 a;void main(){gl_Position=vec4(a,0.,1.);}";
-  const HEAD = `precision mediump float;
+  const HEAD = `#ifdef GL_FRAGMENT_PRECISION_HIGH
+precision highp float;
+#else
+precision mediump float;
+#endif
 uniform vec2 R;uniform float T;uniform vec3 C1;uniform vec3 C2;uniform vec2 L;uniform float P;uniform float M;uniform vec2 PX;
 float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
 float n(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(h(i),h(i+vec2(1.,0.)),f.x),mix(h(i+vec2(0.,1.)),h(i+1.),f.x),f.y);}

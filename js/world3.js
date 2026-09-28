@@ -30,13 +30,18 @@
   function sunVec(d) { const start = Date.UTC(d.getUTCFullYear(), 0, 0), doy = (d - start) / 864e5, dec = -23.44 * Math.cos(TAU / 365 * (doy + 10)) * D2R; const hrs = d.getUTCHours() + d.getUTCMinutes() / 60 + d.getUTCSeconds() / 3600, lon = -(hrs - 12) * 15 * D2R; return [Math.sin(lon) * Math.cos(dec), Math.sin(dec), Math.cos(lon) * Math.cos(dec)]; }
   const VS = `attribute vec3 aP;attribute vec2 aU;uniform mat3 uR;varying vec2 vU;varying vec3 vO;varying vec3 vW;
 void main(){vO=aP;vec3 w=uR*aP;vW=w;vU=aU;gl_Position=vec4(w.x*.86,w.y*.86,-w.z*.5,1.);}`;
-  const FS = `precision mediump float;uniform sampler2D uT;uniform vec3 uSun;uniform vec3 uAcc;uniform float uTime;varying vec2 vU;varying vec3 vO;varying vec3 vW;
-float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
-void main(){float land=texture2D(uT,vU).r;float sd=dot(normalize(vO),uSun);float day=smoothstep(-.12,.18,sd);
+  const FS = `#ifdef GL_FRAGMENT_PRECISION_HIGH
+precision highp float;
+#else
+precision mediump float;
+#endif
+uniform sampler2D uT;uniform vec3 uSun;uniform vec3 uAcc;uniform float uTime;varying vec2 vU;varying vec3 vO;varying vec3 vW;
+float h(vec2 p){p=fract(p*vec2(.1031,.1030));p+=dot(p,p.yx+33.33);return fract((p.x+p.y)*p.x);}
+void main(){if(vW.z<0.)discard;float land=texture2D(uT,vU).r;float sd=dot(normalize(vO),uSun);float day=smoothstep(-.12,.18,sd);
 vec3 oD=vec3(.04,.1,.24),oN=vec3(.008,.015,.04);vec3 lD=mix(uAcc,vec3(.95,.35,.25),.25),lN=uAcc*.12;
 vec2 g=vU*vec2(420.,210.);float dots=smoothstep(.55,.2,length(fract(g)-.5));lD*=.82+.25*dots;
 vec3 c=mix(mix(oN,oD,day),mix(lN,lD,day),land);
-float city=step(.93,h(floor(vU*vec2(700.,350.))))*land*(1.-day)*(.6+.4*sin(uTime*2.+h(floor(vU*vec2(700.,350.)))*30.));c+=vec3(1.,.8,.4)*city*.9;
+float hc=h(floor(vU*vec2(700.,350.)));float city=step(.93,hc)*land*(1.-day)*(.6+.4*sin(mod(uTime,6.2832)*2.+hc*30.));c+=vec3(1.,.8,.4)*clamp(city,0.,1.)*.9;
 float lat=abs(fract(vU.y*6.)-.5),lon=abs(fract(vU.x*12.)-.5);c+=vec3(1.)*.05*(smoothstep(.02,0.,lat)+smoothstep(.02,0.,lon));
 c+=vec3(1.,.55,.2)*smoothstep(.08,0.,abs(sd))*.35;
 vec3 n=normalize(vW);vec3 hv=normalize(normalize(uSun*0.+vec3(-.4,.5,.8))+vec3(0.,0.,1.));float spec=pow(max(dot(n,hv),0.),40.)*(1.-land)*day*.6;c+=vec3(.8,.9,1.)*spec;

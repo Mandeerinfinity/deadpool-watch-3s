@@ -12,8 +12,10 @@
   G.best3 = best;
   function renderBests3() { for (const k in best) { const el = document.getElementById("best_" + k); if (el) el.textContent = best[k] || 0; } }
   K.onEnter("scr-games", renderBests3); renderBests3();
-  let topInset = 0; { const p = document.createElement("div"); p.style.cssText = "position:fixed;top:0;height:env(safe-area-inset-top,0px);visibility:hidden"; document.body.appendChild(p); topInset = p.getBoundingClientRect().height || 0; p.remove(); }
-  const HUDH = () => topInset + 64;
+  // measured lazily from the same --sat variable the HUD uses, so the canvas layout always lines up with the HTML HUD
+  let topInset = null; addEventListener("resize", () => { topInset = null; });
+  function measureInset() { const p = document.createElement("div"); p.style.cssText = "position:fixed;top:0;height:var(--sat,env(safe-area-inset-top,0px));visibility:hidden"; document.body.appendChild(p); const h = p.getBoundingClientRect().height || 0; p.remove(); return h; }
+  const HUDH = () => (topInset == null ? (topInset = measureInset()) : topInset) + 64;
   function finish(name, score, lowerBetter) {
     const rec = score > 0 && (lowerBetter ? (!best[name] || score < best[name]) : score > best[name]);
     if (rec) { best[name] = score; LS.set("best." + name, score); }

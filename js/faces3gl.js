@@ -76,7 +76,12 @@
   F.s3.sphere = sphere;
   const VS3 = `attribute vec3 aP;attribute vec2 aU;uniform mat3 uR;uniform vec3 uS;uniform float uAsp;varying vec2 vU;varying vec3 vN;varying vec3 vW;
 void main(){vec3 p=aP*uS;vec3 w=uR*p;vN=normalize(uR*(aP/uS));vW=w;vU=aU;float z=3.3-w.z;gl_Position=vec4(w.x*1.95/z,w.y*1.95/z+.1,(z-2.)/3.,1.);}`;
-  const FS3 = `precision mediump float;uniform sampler2D uT;uniform vec3 uRim;uniform float uTime;uniform float uHit;varying vec2 vU;varying vec3 vN;varying vec3 vW;
+  const FS3 = `#ifdef GL_FRAGMENT_PRECISION_HIGH
+precision highp float;
+#else
+precision mediump float;
+#endif
+uniform sampler2D uT;uniform vec3 uRim;uniform float uTime;uniform float uHit;varying vec2 vU;varying vec3 vN;varying vec3 vW;
 void main(){vec3 n=normalize(vN);vec3 v=normalize(vec3(0.,0.,3.3)-vW);vec3 L1=normalize(vec3(-.55,.6,.75));vec3 L2=normalize(vec3(.8,-.1,.3));
 vec4 t=texture2D(uT,vU);float d=max(dot(n,L1),0.);float d2=max(dot(n,L2),0.)*.35;vec3 h=normalize(L1+v);float sp=pow(max(dot(n,h),0.),22.)*.45;
 float weave=sin(vU.x*900.)*sin(vU.y*520.)*.04;float rim=pow(1.-max(dot(n,v),0.),2.6);
