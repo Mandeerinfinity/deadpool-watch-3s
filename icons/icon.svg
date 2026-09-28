@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="42%" r="78%"><stop offset="0" stop-color="#ff7a1a"/><stop offset=".28" stop-color="#b3000f"/><stop offset=".7" stop-color="#2a0010"/><stop offset="1" stop-color="#07010a"/></radialGradient>
+    <radialGradient id="red" cx="38%" cy="28%" r="80%"><stop offset="0" stop-color="#ff5a5f"/><stop offset=".45" stop-color="#d4121c"/><stop offset="1" stop-color="#5e040a"/></radialGradient>
+    <linearGradient id="blade" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#6a727e"/><stop offset=".5" stop-color="#ffffff"/><stop offset="1" stop-color="#9aa3ae"/></linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff6b0"/><stop offset=".45" stop-color="#ffd23a"/><stop offset="1" stop-color="#e08a00"/></linearGradient>
+    <linearGradient id="eye" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#d4d9e0"/></linearGradient>
+    <pattern id="dots" width="14" height="14" patternUnits="userSpaceOnUse"><circle cx="7" cy="7" r="2.1" fill="#000" opacity=".22"/></pattern>
+  </defs>
+  <rect width="512" height="512" fill="url(#bg)"/>
+  <g fill="#ffd23a" opacity=".13" transform="translate(256 220)">
+    <path d="M0 0 L-40 -300 L40 -300Z"/><path d="M0 0 L-40 -300 L40 -300Z" transform="rotate(30)"/><path d="M0 0 L-40 -300 L40 -300Z" transform="rotate(60)"/><path d="M0 0 L-40 -300 L40 -300Z" transform="rotate(90)"/><path d="M0 0 L-40 -300 L40 -300Z" transform="rotate(120)"/><path d="M0 0 L-40 -300 L40 -300Z" transform="rotate(150)"/><path d="M0 0 L-40 -300 L40 -300Z" transform="rotate(180)"/><path d="M0 0 L-40 -300 L40 -300Z" transform="rotate(210)"/><path d="M0 0 L-40 -300 L40 -300Z" transform="rotate(240)"/><path d="M0 0 L-40 -300 L40 -300Z" transform="rotate(270)"/><path d="M0 0 L-40 -300 L40 -300Z" transform="rotate(300)"/><path d="M0 0 L-40 -300 L40 -300Z" transform="rotate(330)"/>
+  </g>
+  <rect width="512" height="512" fill="url(#dots)"/>
+  <!-- katanas on the back, handles up -->
+  <g transform="translate(92 22) rotate(-38)"><rect x="-11" y="0" width="22" height="96" rx="6" fill="#1a1a1d" stroke="#000" stroke-width="5"/><path d="M-11 16 L11 28 M-11 40 L11 52 M-11 64 L11 76" stroke="#d4121c" stroke-width="5"/><rect x="-34" y="94" width="68" height="18" rx="5" fill="url(#gold)" stroke="#000" stroke-width="5"/><path d="M-9 112 L9 112 L9 400 L0 440 L-9 400 Z" fill="url(#blade)" stroke="#000" stroke-width="5"/></g>
+  <g transform="translate(420 22) rotate(38)"><rect x="-11" y="0" width="22" height="96" rx="6" fill="#1a1a1d" stroke="#000" stroke-width="5"/><path d="M-11 16 L11 28 M-11 40 L11 52 M-11 64 L11 76" stroke="#d4121c" stroke-width="5"/><rect x="-34" y="94" width="68" height="18" rx="5" fill="url(#gold)" stroke="#000" stroke-width="5"/><path d="M-9 112 L9 112 L9 400 L0 440 L-9 400 Z" fill="url(#blade)" stroke="#000" stroke-width="5"/></g>
+  <!-- mask -->
+  <g transform="translate(256 236) rotate(-8)">
+    <ellipse cx="0" cy="0" rx="150" ry="166" fill="#000" transform="translate(10 12)" opacity=".55"/>
+    <ellipse cx="0" cy="0" rx="146" ry="162" fill="url(#red)" stroke="#000" stroke-width="12"/>
+    <path d="M0 -160 C-8 -60 -8 60 0 160" stroke="#000" stroke-width="7" fill="none" opacity=".7"/>
+    <path d="M-10 -8 C-26 -70 -100 -86 -142 -52 L-144 40 C-96 52 -34 40 -10 14 Z" fill="#0b0b0c"/>
+    <path d="M10 -8 C26 -70 100 -86 142 -52 L144 40 C96 52 34 40 10 14 Z" fill="#0b0b0c"/>
+    <path d="M-118 -10 C-88 -40 -40 -30 -24 6 C-58 22 -98 16 -118 -10 Z" fill="url(#eye)" stroke="#000" stroke-width="3"/>
+    <path d="M118 -10 C88 -40 40 -30 24 6 C58 22 98 16 118 -10 Z" fill="url(#eye)" stroke="#000" stroke-width="3"/>
+    <ellipse cx="-62" cy="-106" rx="46" ry="18" fill="#fff" opacity=".22" transform="rotate(-24 -62 -106)"/>
+  </g>
+  <!-- 3S starburst badge -->
+  <g transform="translate(372 392) rotate(-12)">
+    <path d="M0 -118 L22 -62 L78 -94 L62 -36 L122 -34 L74 4 L116 50 L56 50 L60 112 L14 72 L-18 124 L-30 64 L-88 90 L-64 34 L-120 12 L-66 -18 L-102 -70 L-40 -58 L-34 -116 Z" fill="#000" transform="translate(8 8)"/>
+    <path d="M0 -118 L22 -62 L78 -94 L62 -36 L122 -34 L74 4 L116 50 L56 50 L60 112 L14 72 L-18 124 L-30 64 L-88 90 L-64 34 L-120 12 L-66 -18 L-102 -70 L-40 -58 L-34 -116 Z" fill="url(#gold)" stroke="#000" stroke-width="8" stroke-linejoin="round"/>
+    <text x="-2" y="34" font-family="Impact, 'Arial Black', sans-serif" font-size="104" font-weight="900" text-anchor="middle" fill="#d4121c" stroke="#000" stroke-width="7" paint-order="stroke fill" letter-spacing="-4">3S</text>
+  </g>
+</svg>
