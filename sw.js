@@ -3,7 +3,7 @@
    All three apps share the github.io origin, and v1's worker may delete other caches on its own activate, so every
    lookup here tolerates a missing cache, falls back to the network and repopulates (self-heals). */
 const PREFIX = "dpw3s-";
-const VERSION = PREFIX + "v3.0.0";
+const VERSION = PREFIX + "v3.0.1";
 const ASSETS = [
   "./", "./index.html", "./manifest.json", "./css/style.css", "./css/v2.css", "./css/s3.css",
   "./js/s3-boot.js", "./js/quips.js", "./js/quips2.js", "./js/quips3.js", "./js/sound.js", "./js/sound3.js", "./js/fx.js", "./js/fx3.js",
